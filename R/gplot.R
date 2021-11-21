@@ -30,7 +30,7 @@ setMethod("gplot", signature(x='SpatRaster'),
               {
                   stop("ggplot2 is required for the gplot method.")
               }
-              x <- terra::sampleRegular(x, maxpixels, asRaster = TRUE)
+              x <- terra::spatSample(x, maxpixels, as.raster = TRUE)
               coords <- terra::xyFromCell(x, seq_len(terra::ncell(x)))
               dat <- stack(as.data.frame(terra::values(x)))
               names(dat) <- c('value', 'variable')
